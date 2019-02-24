@@ -2,6 +2,9 @@
 
 Signup Form for latest Angular and Angular Material with Reactive form fields and form validation
 
+![alt text](https://github.com/Sarfarazsajjad/angular-material-signup-form/raw/master/src/assets/demo.png)
+
+
 Component url
 
 http://localhost:4200//signup

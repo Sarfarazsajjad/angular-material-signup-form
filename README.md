@@ -7,8 +7,9 @@ Signup Form for latest Angular and Angular Material with Reactive form fields an
 
 Component url
 
-http://localhost:4200//signup
-http://localhost:4200//signin
+`http://localhost:4200/signup`
+
+`http://localhost:4200/signin`
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
 

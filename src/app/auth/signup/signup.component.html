@@ -1,0 +1,72 @@
+<div class="page">
+  <mat-card class="signup-form-container-card">
+    <img class="logo" src="assets/Logo-small.png" alt="Companys">
+    <form [formGroup]="signupFormGroup">
+      <h2>Register below to create a new account</h2>
+      Already registered? <a routerLink="/signin">Sign-in here</a>
+      <div class="container">
+        <!-- First Name -->
+        <mat-form-field>
+          <input matInput placeholder="Your First Name" formControlName="firstNameFormControl" required>
+          <mat-error>
+            First Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- Surname -->
+        <mat-form-field>
+          <input matInput placeholder="Your Surname" formControlName="surNameFormControl" required>
+          <mat-error>
+            Surname is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- Email -->
+        <mat-form-field>
+          <input matInput placeholder="Your Email" formControlName="emailFormControl" required>
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- Password -->
+        <div>
+          <mat-form-field style="width: 100%">
+            <mat-label>Password</mat-label>
+            <input matInput #passwordWithValidation (focus)="passwordFieldFocus = true"
+              (blur)="passwordFieldFocus = false" [type]="hide ? 'password' : 'text'" required autocomplete="off"
+              [formControl]="passwordFormControl" placeholder="Password">
+            <mat-hint align="end" aria-live="polite">
+              {{passwordWithValidation.value.length}} / 25
+            </mat-hint>
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="passwordFormControl.hasError('pattern')">
+              Password is not valid
+            </mat-error>
+          </mat-form-field>
+          <mat-password-strength [hidden]="!passwordWithValidation.value" #passwordComponentWithValidation [password]="passwordWithValidation.value">
+          </mat-password-strength>
+          <mat-password-strength-info *ngIf="passwordWithValidation.value.length && passwordFieldFocus"
+            [passwordComponent]="passwordComponentWithValidation">
+          </mat-password-strength-info>
+        </div>
+        <!-- Re Password -->
+        <mat-form-field>
+          <input matInput placeholder="Re-enter Password" [type]="hide ? 'password' : 'text'" autocomplete="off"
+            [formControl]="repasswordFormControl" required>
+        </mat-form-field>
+        <!-- Signup Button -->
+        <button mat-raised-button color="primary" type="submit"
+          [disabled]="!signupFormGroup.valid  || (passwordFormControl.value !== repasswordFormControl.value)">Register
+        </button>
+      </div>
+    </form>
+    <!-- Terms and Policy Statement and links -->
+    <p class="mat-caption privacy-policy-text">
+      By registering you agree to Companys's <a href="#">conditions of use</a>. Our <a href="#">Privacy Policy</a>
+      details how your information is processed to provide you with Companys's service.
+    </p>
+  </mat-card>
+</div>
